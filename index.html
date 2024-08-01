@@ -5,8 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#3BA5A2"/>
     <title>Assessment Form</title>
+    <style>
+        .error-message {
+            display: none;
+            color: red;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    <div data-tf-live="01J463HATMQQVBNDDPYB0BQFTP"></div><script src="//embed.typeform.com/next/embed.js"></script>
+    <div id="typeform-container"></div>
+    <div id="error-message" class="error-message">Error: Typeform ID is missing or invalid.</div>
+    <script>
+        function getQueryParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        const typeformContainer = document.getElementById('typeform-container');
+        const errorMessage = document.getElementById('error-message');
+        const tfLiveValue = getQueryParameter('tf_live');
+
+        if (tfLiveValue) {
+            typeformContainer.setAttribute('data-tf-live', tfLiveValue);
+
+            // Initialize Typeform embed
+            const script = document.createElement('script');
+            script.src = '//embed.typeform.com/next/embed.js';
+            script.async = true;
+            document.body.appendChild(script);
+        } else {
+            errorMessage.style.display = 'block';
+        }
+    </script>
 </body>
 </html>
