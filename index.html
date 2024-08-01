@@ -25,16 +25,10 @@
 <body>
     <div id='form' class='typeform-widget' data-tf-widget="IY8W9hjc" data-tf-transitive-search-params="email"></div>
     <script>
-        document.addEventListener('focusin', (event) => {
-            // Check if the focused element is an input or textarea
-            if (event.target.tagName === 'INPUT' || event.target.tagName === 'TEXTAREA') {
-                document.body.style.height = 'calc(100% - 216px)'; // Adjust height for keyboard
-            }
-        });
-
-        document.addEventListener('focusout', () => {
-            document.body.style.height = '100%'; // Reset height when keyboard hides
-        });
+       input.onfocus = function () {
+           window.scrollTo(0, 0);
+           document.body.scrollTop = 0;
+       }
     </script>
 </body>
 </html>
