@@ -7,13 +7,12 @@
     <title>Assessment Form</title>
     <style>
         html, body {
-            height: 100%; /* Ensure full viewport height */
-            width: 100%;   /* Ensure full viewport width */
-            margin: 0;     /* Remove default margin */
-            overflow: hidden; /* Disable scrollbars */
+            height: 100%;
+            width: 100%;   
+            margin: 0;     
+            overflow: hidden;
         }
 
-        /* Optional: Make sure the Typeform content also fills the screen */
         div[data-tf-widget] { 
             height: 100%; 
             width: 100%; 
@@ -21,7 +20,19 @@
     </style>
 </head>
 <body>
-    <div data-tf-widget="rjrO4Rbb" data-tf-transitive-search-params="prospect,name,email,ref"></div>
+    <div id="typeform-container" data-tf-transitive-search-params="name,email,prospect,ref"></div>
+    <script>
+        const mapping = {
+            'Alcohol'   : 'rjrO4Rbb',
+            'Cannabis'  : 'sH85lnZz',
+            'Stimulants': 'c4rKOih8'
+        };
+        const params    = new URLSearchParams(window.location.search);
+        const pathway   = params.get('pathway')
+        const form      = pathway ? mapping[pathway] : 'rjrO4Rbb';
+        const container = document.getElementById('typeform-container');
+        container.setAttribute('data-tf-widget', form);
+    </script>
     <script src="//embed.typeform.com/next/embed.js"></script>
 </body>
 </html>
